@@ -1,19 +1,28 @@
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const express=require('express');
+const bodyParser=require('body-parser');
+const mongoose=require('mongoose');
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+const app=express();
+// on appelle les routes
+const stuffRoutes=require('./routes/stuff');
 
-var app = express();
+// connection à la bdd
+mongoose.connect('mongodb+srv://MatthieuGascon:Projet@cluster0.v5vriz2.mongodb.net/?retryWrites=true&w=majority',
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// on met les droits pour les requetes post etc
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    next();
+  });
+  app.use(bodyParser.json());
+  // on enregistre les routes 
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-
-module.exports = app;
+app.use('/api/stuff', stuffRoutes);
+module.exports=app;
