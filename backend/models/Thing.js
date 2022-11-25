@@ -1,3 +1,4 @@
+//source openclassroom réadapté pour notre projet
 const mongoose = require('mongoose');
 //modele pour les objets à vendre
 const thingSchema = mongoose.Schema({

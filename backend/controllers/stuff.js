@@ -1,3 +1,4 @@
+//source openclassroom réadapté pour notre projet
 const Thing = require('../models/thing');
 //on a importe le modele
 //on creer les fonctions get, put ...
