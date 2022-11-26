@@ -1,3 +1,6 @@
+//source: lien pour trouver icon ciel:https://openweathermap.org/weather-conditions
+//souce : lien pour API:https://openweathermap.org/current
+
 const express = require("express");
 //on cree une app qui utilise express
 const app = express();
@@ -11,6 +14,8 @@ const fetch = require("node-fetch");
 const API_KEY = "c20c3774fe1834487f4425ef7d85e4fd";
 // Url API
 const API_URL = "https://api.openweathermap.org/data/2.5/weather";
+//url image ciel
+const API_UrlImageCiel="http://openweathermap.org/img/wn";
 
 //encoder l'url quand on va faire les requetes http
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,17 +31,27 @@ app.post("/", async (req, res) => {
   //localisation prend les valeurs du body de la zone de text ville (html)
   //await c'est qu'il attend qu'on ait fait une saisie
   //await c'est pour les actions qui peuvent etre rejetée ou acceptée
-  let location = await req.body.ville;
+  let localisation = await req.body.ville;
   //lien de l'api et des paramètres: https://openweathermap.org/current
-  const url = `${API_URL}?q=${location}&appid=${API_KEY}`;
+  //units c'est pour avoir les degrés en celcius
+  const url = `${API_URL}?q=${localisation}&appid=${API_KEY}&units=metric`;
   //const url =
   //permet de recuperé la réponse en récuperant les données de l'url
   const response = await fetch(url);
   //permet de mettre le body de la réponse en json
   const donneesmeteo = await response.json();
+  //recupere les donnes de temperature
+  const temp= donneesmeteo.main.temp;
+  //infos sur le soleil ou les nuages
+  const soleil=donneesmeteo.weather[0].description;
+  //l'id correspondant à l'icon pour trouver l'image du ciel
+  const icon=donneesmeteo.weather[0].icon;
+  //url pour trouver image des nuages ou soleil
+  const ImageCiel=`${API_UrlImageCiel}/${icon}@2x.png`;
   //affichage dans la console des données méteo
-  console.log(donneesmeteo);
-  res.send("Merci");
+  res.write(`<h1> Meteo pour la ville de ${localisation} est ${soleil}</h1>`);
+  res.write(`<h1> la temperature est ${temp} degres</h1>`);
+  res.write(`<img src='${ImageCiel}'> `);
 });
 
 app.listen(3000, () => {
