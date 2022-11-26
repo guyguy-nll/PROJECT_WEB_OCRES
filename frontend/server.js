@@ -63,7 +63,7 @@ app.post("/", async (req, res) => {
   Donnees.temp=temp;
   Donnees.soleil=soleil;
   Donnees.humidite=donneesmeteo.main.humidity;
-  res.render('index', {Donnes: Donnes});
+  res.render('index', {Donnees: Donnees});
 });
 
 app.listen(3000, () => {
