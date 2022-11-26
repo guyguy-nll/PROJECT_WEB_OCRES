@@ -19,11 +19,16 @@ const API_UrlImageCiel="http://openweathermap.org/img/wn";
 
 //encoder l'url quand on va faire les requetes http
 app.use(bodyParser.urlencoded({ extended: true }));
+//le html va pouvoir trouver le css et js dans le dossier public
+app.use(express.static("public"));
+//template pour afficher les vues
+app.set("view engine", "ejs");
 //recuperer la clé de connexion pour l'API meteo
 require("dotenv").config();
 // creation de la methode get
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  const Donnees={loc:"localisation", temp:"Temp",soleil:"Soleil", humidite:"humidite" };
+  res.render("index",{Donnees: Donnees});
 });
 // creation de la methode post
 app.post("/", async (req, res) => {
@@ -40,6 +45,7 @@ app.post("/", async (req, res) => {
   const response = await fetch(url);
   //permet de mettre le body de la réponse en json
   const donneesmeteo = await response.json();
+  console.log(donneesmeteo);
   //recupere les donnes de temperature
   const temp= donneesmeteo.main.temp;
   //infos sur le soleil ou les nuages
@@ -52,6 +58,12 @@ app.post("/", async (req, res) => {
   res.write(`<h1> Meteo pour la ville de ${localisation} est ${soleil}</h1>`);
   res.write(`<h1> la temperature est ${temp} degres</h1>`);
   res.write(`<img src='${ImageCiel}'> `);
+  const Donnees={};
+  Donnees.loc=localisation;
+  Donnees.temp=temp;
+  Donnees.soleil=soleil;
+  Donnees.humidite=donneesmeteo.main.humidity;
+  res.render('index', {Donnes: Donnes});
 });
 
 app.listen(3000, () => {
