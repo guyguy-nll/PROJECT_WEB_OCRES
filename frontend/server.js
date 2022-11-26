@@ -4,6 +4,7 @@ const app=express();
 //permet d'envoyer des requetes http par body
 const bodyPerser=require ("body-parser");
 // permet de manipuler des 
+//le require marchait pas on a trouvé une autre manière de require
 const fetch=require("node-fetch");
 
 //encoder l'url quand on va faire les requetes http
@@ -22,8 +23,13 @@ app.post("/",async(req,res)=>{
     //await c'est pour les actions qui peuvent etre rejetée ou acceptée
    let localisation= await req.body.ville;
    //lien de l'api et des paramètres: https://openweathermap.org/current
-   const url='https://api.openweathermap.org/data/2.5/weather?q=${localisation}&appid=${process.env.}';
-   const response=await 
+   const url='https://api.openweathermap.org/data/2.5/weather?q=${localisation}&appid=${process.env.APIKEY}&units=metric';
+   //permet de recuperé la réponse en récuperant les données de l'url
+   const response=await fetch(url);
+   //permet de mettre le body de la réponse en json
+   const donneesmeteo=await response.json();
+   //affichage dans la console des données méteo
+   console.log(donneesmeteo);
 });
 
 app.listen(3000,()=>{
