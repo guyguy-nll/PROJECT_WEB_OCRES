@@ -1,6 +1,6 @@
 //source: lien pour trouver icon ciel:https://openweathermap.org/weather-conditions
 //souce : lien pour API:https://openweathermap.org/current
-
+//source pour faire son API: https://www.youtube.com/watch?v=V6AArnmODqQ&t=4052s&ab_channel=Basecamp
 const express = require("express");
 //on cree une app qui utilise express
 const app = express();
