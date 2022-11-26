@@ -20,7 +20,7 @@ const API_UrlImageCiel = "http://openweathermap.org/img/wn";
 //encoder l'url quand on va faire les requetes http
 app.use(bodyParser.urlencoded({ extended: true }));
 //le html va pouvoir trouver le css et js dans le dossier public
-app.use(express.static("public"));
+//app.use(express.static("public"));
 //template pour afficher les vues
 app.set("view engine", "ejs");
 //recuperer la clé de connexion pour l'API meteo
