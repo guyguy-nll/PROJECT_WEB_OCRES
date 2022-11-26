@@ -27,7 +27,7 @@ app.set("view engine", "ejs");
 require("dotenv").config();
 
 // creation de la methode get
-
+/*
 app.get("/", (req, res) => {
   const Data = {
     localisation: "Localisation",
@@ -36,6 +36,10 @@ app.get("/", (req, res) => {
     humidite: "humidite",
   };
   res.render("index", { Data: Data });
+});
+*/
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
 });
 
 // creation de la methode post
