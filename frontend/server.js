@@ -15,7 +15,7 @@ const API_KEY = "c20c3774fe1834487f4425ef7d85e4fd";
 // Url API
 const API_URL = "https://api.openweathermap.org/data/2.5/weather";
 //url image ciel
-const API_UrlImageCiel="http://openweathermap.org/img/wn";
+const API_UrlImageCiel = "http://openweathermap.org/img/wn";
 
 //encoder l'url quand on va faire les requetes http
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,11 +25,19 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 //recuperer la clé de connexion pour l'API meteo
 require("dotenv").config();
+
 // creation de la methode get
+
 app.get("/", (req, res) => {
-  const Donnees={loc:"localisation", temp:"Temp",soleil:"Soleil", humidite:"humidite" };
-  res.render("index",{Donnees: Donnees});
+  const Data = {
+    localisation: "Localisation",
+    temps: "Temps",
+    description: "Soleil",
+    humidite: "humidite",
+  };
+  res.render("index", { Data: Data });
 });
+
 // creation de la methode post
 app.post("/", async (req, res) => {
   //let variable a portée illimitée, elle s'adapte a ce qu'on met dedans
@@ -47,23 +55,27 @@ app.post("/", async (req, res) => {
   const donneesmeteo = await response.json();
   console.log(donneesmeteo);
   //recupere les donnes de temperature
-  const temp= donneesmeteo.main.temp;
+  const temps = donneesmeteo.main.temps;
   //infos sur le soleil ou les nuages
-  const soleil=donneesmeteo.weather[0].description;
+  const description = donneesmeteo.weather[0].description;
   //l'id correspondant à l'icon pour trouver l'image du ciel
-  const icon=donneesmeteo.weather[0].icon;
+  const icon = donneesmeteo.weather[0].icon;
   //url pour trouver image des nuages ou soleil
-  const ImageCiel=`${API_UrlImageCiel}/${icon}@2x.png`;
+  const ImageCiel = `${API_UrlImageCiel}/${icon}@2x.png`;
   //affichage dans la console des données méteo
-  res.write(`<h1> Meteo pour la ville de ${localisation} est ${soleil}</h1>`);
-  res.write(`<h1> la temperature est ${temp} degres</h1>`);
+  res.write(
+    `<h1> La meteo actuelle de ${localisation} est ${description}</h1>`
+  );
+  res.write(`<h1> La temperature est ${temps} degres</h1>`);
   res.write(`<img src='${ImageCiel}'> `);
-  const Donnees={};
-  Donnees.loc=localisation;
-  Donnees.temp=temp;
-  Donnees.soleil=soleil;
-  Donnees.humidite=donneesmeteo.main.humidity;
-  res.render('index', {Donnes: Donnes});
+  /*
+  const Donnees = {};
+  Donnees.localisation = localisation;
+  Donnees.temps = temps;
+  Donnees.description = description;
+  Donnees.humidite = donneesmeteo.main.humidity;
+  res.render("index", { Donnees: Donnees });
+  */
 });
 
 app.listen(3000, () => {
