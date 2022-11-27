@@ -10,6 +10,8 @@ const bodyParser = require("body-parser");
 //le require marchait pas on a trouvé une autre manière de require
 const fetch = require("node-fetch");
 
+var cors = require("cors");
+
 // Clé api
 const API_KEY = "c20c3774fe1834487f4425ef7d85e4fd";
 // Url API
@@ -20,10 +22,13 @@ const API_UrlImageCiel = "http://openweathermap.org/img/wn";
 //On choisi le port 7000
 const PORT = process.env.PORT || 7000;
 
+const axios = require("axios");
+
 //Pour trouver + facilement les fichiers
 const path = require("path");
 
 app.use(express.json());
+app.use(cors());
 
 //encoder l'url quand on va faire les requetes http
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -46,19 +51,27 @@ app.get("/", (req, res) => {
   res.render("index", { Data: Data });
 });
 */
-
-app.get("/*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/index.html"));
 });
 
+app.get("/res", (req, res) => {
+  const Data = [];
+  res.send("API test");
+  res.json(Data);
+});
+
+/*
 app.get("/api/youtube", (req, res) => {
   res.send({
-    msg: "Transfert du message",
+    msg: "Bonjour",
   });
 });
+*/
 
 // creation de la methode post
 app.post("/", async (req, res) => {
+  const Data = [];
   //let variable a portée illimitée, elle s'adapte a ce qu'on met dedans
   //localisation prend les valeurs du body de la zone de text ville (html)
   //await c'est qu'il attend qu'on ait fait une saisie
@@ -74,7 +87,9 @@ app.post("/", async (req, res) => {
   const donneesmeteo = await response.json();
   console.log(donneesmeteo);
   //recupere les donnes de temperature
-  const temps = donneesmeteo.main.temps;
+  const temps = donneesmeteo.main.temp;
+  //humidité
+  const humidite = donneesmeteo.main.humidity;
   //infos sur le soleil ou les nuages
   const description = donneesmeteo.weather[0].description;
   //l'id correspondant à l'icon pour trouver l'image du ciel
@@ -85,8 +100,18 @@ app.post("/", async (req, res) => {
   res.write(
     `<h1> La meteo actuelle de ${localisation} est ${description}</h1>`
   );
-  res.write(`<h1> La temperature est ${temps} degres</h1>`);
+  res.write(
+    `<h1> La temperature est ${temps} degres et l'humidite ${humidite}%</h1>`
+  );
   res.write(`<img src='${ImageCiel}'> `);
+  Data.push({
+    localisation,
+    temps,
+    humidite,
+    description,
+  });
+  console.log(Data);
+
   /*
   const Donnees = {};
   Donnees.localisation = localisation;
