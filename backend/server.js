@@ -17,6 +17,14 @@ const API_URL = "https://api.openweathermap.org/data/2.5/weather";
 //url image ciel
 const API_UrlImageCiel = "http://openweathermap.org/img/wn";
 
+//On choisi le port 7000
+const PORT = process.env.PORT || 7000;
+
+//Pour trouver + facilement les fichiers
+const path = require("path");
+
+app.use(express.json());
+
 //encoder l'url quand on va faire les requetes http
 app.use(bodyParser.urlencoded({ extended: true }));
 //le html va pouvoir trouver le css et js dans le dossier public
@@ -38,8 +46,15 @@ app.get("/", (req, res) => {
   res.render("index", { Data: Data });
 });
 */
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/index.html"));
+});
+
+app.get("/api/youtube", (req, res) => {
+  res.send({
+    msg: "Transfert du message",
+  });
 });
 
 // creation de la methode post
@@ -82,6 +97,6 @@ app.post("/", async (req, res) => {
   */
 });
 
-app.listen(3000, () => {
-  console.log("server front lance");
+app.listen(PORT, () => {
+  console.log(`Le serveur est lancé sur le port : ${PORT}`);
 });
