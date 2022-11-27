@@ -61,13 +61,11 @@ app.get("/res", (req, res) => {
   res.json(Data);
 });
 
-/*
 app.get("/api/youtube", (req, res) => {
   res.send({
     msg: "Bonjour",
   });
 });
-*/
 
 // creation de la methode post
 app.post("/", async (req, res) => {
