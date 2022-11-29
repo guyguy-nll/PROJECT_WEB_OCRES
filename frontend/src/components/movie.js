@@ -40,7 +40,7 @@ export default class Movies extends React.Component {
                     {this.renderInfo('Localisation', meteo)}
                     {this.renderInfo('Temp', temp)}
                     {this.renderInfo('humidite', humidite)}
-                    {this.renderInfos('vent', vent)}
+                    {this.renderInfo('vent', vent)}
                     {this.renderInfo('pression', pression)}
                     
                 </div>
