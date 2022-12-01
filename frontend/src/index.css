@@ -24,3 +24,90 @@ code {
   border-radius: 50px 0px 0px 50px;
   }
 
+  h1{
+    font-size: 2rem;
+  }
+
+  h2{
+    font-size: 1.4rem;
+  }
+
+  h3{
+    font-size: 0.87rem;
+  }
+
+  .insight{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    background: blueviolet;
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 50%;
+    bottom: 10%;
+    }
+
+  .insight > div {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 20px;
+    width: 350px;
+    height: 120px;
+    background: #FFFFFF;
+    border-radius: 40px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all 300ms ease;
+  }
+
+  .insight > div:hover{
+    background: red;
+    box-shadow: none;
+  }
+
+  .insight > div span{
+    background: coral;
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: white;
+    font-size: 2rem;
+  }
+
+  .insight > div .middle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .insight > div h3{
+    margin: 1rem 0.1rem 1rem;
+    background: red;
+  }
+
+  .insight > div .middle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .insight svg{
+    width: 7rem;
+    height: 7rem;
+    background: #16df41;
+  }
+
+  .insight svg circle{
+    fill: none;
+    stroke: #5D9DE7;
+    stroke-width: 14;
+    stroke-linecap: round;
+    transform: translate(5px,5px);
+
+    stroke-dasharray: 110;
+    stroke-dashoffset: 92;
+  }
+
+
+
+

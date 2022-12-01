@@ -88,8 +88,65 @@ export default class App extends React.Component {
               />
             ))}
           </div>
+          <div class="insight">
+            <div class="humidity">
+              <div class="middle">
+                <div class="left">
+                  <h3>Humidite</h3>
+                  <h1>10</h1>
+                </div>
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+              </div>
+            </div>
+
+            <div class="rain">
+              <div class="middle">
+                <div class="left">
+                  <h3>Pluie</h3>
+                  <h1>20</h1>
+                </div>
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+              </div>
+            </div>
+
+            <div class="plants">
+              <div class="middle">
+                <div class="left">
+                  <h3>Plante</h3>
+                  <h1>30</h1>
+                </div>
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+              </div>
+            </div>
+
+            <div class="wind">
+              <div class="middle">
+                <div class="left">
+                  <h3>Vent</h3>
+                  <h1>40</h1>
+                </div>
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 }
+/*
+
+            
+            
+            
+            
+            
+            */
