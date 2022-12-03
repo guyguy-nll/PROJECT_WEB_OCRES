@@ -1,3 +1,4 @@
+//Source Openclassroom et le tp5 readaptés pour notre projet
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -10,9 +11,18 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var moviesRouter = require('./routes/movies');
-
+// chemin pour trouver les routes de l'API plante
+const stuffRouter=require('./routes/plant');
 
 var app = express();
+
+
+// connection à la bdd
+mongoose.connect('mongodb+srv://MatthieuGascon:Projet@cluster0.v5vriz2.mongodb.net/?retryWrites=true&w=majority',
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,7 +44,8 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/movies', moviesRouter);
-
+// API de plantes avec notre bdd
+app.use('/api/plant', stuffRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
