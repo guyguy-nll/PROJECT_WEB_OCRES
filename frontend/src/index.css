@@ -40,7 +40,7 @@ code {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.6rem;
-    background: blueviolet;
+    /*background: blueviolet;*/
     position: absolute;
     left: 5%;
     right: 5%;

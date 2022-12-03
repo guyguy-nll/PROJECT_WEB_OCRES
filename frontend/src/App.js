@@ -3,6 +3,8 @@ import Button from "./components/button";
 import Movie from "./components/movie";
 import Meteo2 from "./components/meteo2";
 import Humidity from "./components/humidity";
+import Rain from "./components/rain";
+import Wind from "./components/wind";
 
 import Search from "./components/search";
 import axios from "axios";
@@ -84,8 +86,32 @@ export default class App extends React.Component {
           <div>
             <Meteo2 />
           </div>
-          <div>
-            <Humidity />
+          <div class="all">
+            {map(meteos, (meteo, index) => (
+              <Humidity
+                key={`meteo-${index}`}
+                infos={meteo}
+                deleteMovie={this.deleteMovie}
+              />
+            ))}
+          </div>
+          <div class="all">
+            {map(meteos, (meteo, index) => (
+              <Rain
+                key={`meteo-${index}`}
+                infos={meteo}
+                deleteMovie={this.deleteMovie}
+              />
+            ))}
+          </div>
+          <div className="all">
+            {map(meteos, (meteo, index) => (
+              <Wind
+                key={`meteo-${index}`}
+                infos={meteo}
+                deleteMovie={this.deleteMovie}
+              />
+            ))}
           </div>
           <div className="movies">
             {map(meteos, (meteo, index) => (
@@ -96,7 +122,15 @@ export default class App extends React.Component {
               />
             ))}
           </div>
-          <div class="insight">
+        </div>
+      </div>
+    );
+  }
+}
+/*
+
+            
+   <div class="insight">
             <div class="humidity">
               <div class="middle">
                 <div class="left">
@@ -144,16 +178,7 @@ export default class App extends React.Component {
                 </svg>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-/*
-
-            
-            
+          </div>         
             
             
             

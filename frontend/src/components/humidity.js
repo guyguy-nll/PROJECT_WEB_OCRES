@@ -1,16 +1,37 @@
 import React from "react";
-import "./humidity.css";
+import "./all.css";
+import { map, split } from "lodash";
 
 export default class Humidity extends React.Component {
-  render() {
+  renderInfo(label, info) {
     return (
-      <div class="humidity">
+      <div>
+        <div>{label}</div>
+        <div>{info}</div>
+      </div>
+    );
+  }
+
+  renderInfos(label, infos) {
+    return (
+      <div>
+        <div>{label}</div>
         <div>
-          <div>
-            <h3>Humidite</h3>
-            <h1>2</h1>
-          </div>
+          {map(infos, (info) => (
+            <div key={`infoList-${info}`}>{info}</div>
+          ))}
         </div>
+      </div>
+    );
+  }
+
+  render() {
+    const { infos, deleteMovie } = this.props;
+    const { id, meteo, temp, humidite, vent, pression } = infos;
+
+    return (
+      <div>
+        <div>{this.renderInfo("humidite", humidite)}</div>
       </div>
     );
   }
