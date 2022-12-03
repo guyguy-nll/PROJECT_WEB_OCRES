@@ -1,6 +1,9 @@
 import React from "react";
 import Button from "./components/button";
 import Movie from "./components/movie";
+import Meteo2 from "./components/meteo2";
+import Humidity from "./components/humidity";
+
 import Search from "./components/search";
 import axios from "axios";
 import { map } from "lodash";
@@ -74,11 +77,16 @@ export default class App extends React.Component {
             onChange={this.addFilmInputChange}
             value={addFilmInputValue}
           />
-          <Search onSearchChange={handleOnSearchChange} />
           <Button text={"Add movie"} onClick={this.addMovie} />
         </div>
 
         <div id="body2">
+          <div>
+            <Meteo2 />
+          </div>
+          <div>
+            <Humidity />
+          </div>
           <div className="movies">
             {map(meteos, (meteo, index) => (
               <Movie
