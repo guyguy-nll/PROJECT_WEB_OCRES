@@ -12,13 +12,16 @@
     box-shadow: inset 0 0 15px rgba(0, 0, 0, .5);
     */
 
-    width: 250px;
-    height: 150px;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 20px;
+    width: 350px;
+    height: 120px;
     background: #FFFFFF;
     border-radius: 40px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all 300ms ease;
 }
 
 .infoLine {

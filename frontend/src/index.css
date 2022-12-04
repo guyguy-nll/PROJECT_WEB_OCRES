@@ -4,6 +4,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #5D9DE7;
+  display: flex;
 }
 
 code {
@@ -17,9 +18,12 @@ code {
   right: -0.01%;
   top: 0px;
   bottom: 0px;
-  
-  /* Bleu secondaire */
-  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: space-evenly;
+  align-content: space-around;
   background: #E4F2FF;
   border-radius: 50px 0px 0px 50px;
   }
