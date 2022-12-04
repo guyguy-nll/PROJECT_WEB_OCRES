@@ -45,9 +45,13 @@ export default class App extends React.Component {
   };
 
   addMovie = () => {
+    
+    axios.delete(`${BACKEND_BASE_URL}/${this.state.meteos[0].id}`).then((data) => this.getList());
     axios
       .put(BACKEND_BASE_URL, { meteo: this.state.addFilmInputValue })
       .then((data) => this.getList());
+    
+      
   };
 
   deleteMovie = (id) => {
@@ -79,7 +83,7 @@ export default class App extends React.Component {
             onChange={this.addFilmInputChange}
             value={addFilmInputValue}
           />
-          <Button text={"Add movie"} onClick={this.addMovie} />
+          <Button text={"Ajouter"} onClick={this.addMovie} />
         </div>
 
         <div id="body2">

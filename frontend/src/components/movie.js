@@ -41,7 +41,7 @@ export default class Movies extends React.Component {
           {this.renderInfo("vent", vent)}
           {this.renderInfo("pression", pression)}
         </div>
-        <Button text={"Delete movie"} onClick={() => deleteMovie(id)} />
+        <Button text={"Supprimer"} onClick={() => deleteMovie(id)} />
       </div>
     );
   }

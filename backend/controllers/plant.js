@@ -99,6 +99,26 @@ exports.deletePlante = (req, res, next) => {
     }
   );
 };
+/*
+axios.getUnePlante(url)
+.then(function (response) {
+  // handle success
+  if(response.data){
+    const {nom,localisation,imageUrl,userId,info,prix} = response.data;
+
+    Plantas.push({
+      nom: nom,
+      localisation: localisation,
+      imageUrl: imageUrl,
+      userId: userId, // en minutes,
+      info: info,
+      prix:prix
+      
+    });
+  }
+  console.log(Plantas);
+});
+*/
 // recuperer tous les objets plante de la bdd
 exports.getAllStuff = (req, res, next) => {
   Plante.find().then(
