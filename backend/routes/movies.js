@@ -1,8 +1,8 @@
 //source tp5 readapté à la méteo
-const express = require('express');
-const axios = require('axios');
+const express = require("express");
+const axios = require("axios");
 // Lodash utils library
-const _ = require('lodash');
+const _ = require("lodash");
 
 const router = express.Router();
 // Clé api
@@ -21,11 +21,24 @@ const meteo = "Paris";
 const url = `${API_URL}?q=${meteo}&appid=${API_KEY}&units=metric`;
 
 // Make a request for a movie
-axios.get(url)
-.then(function (response) {
+axios.get(url).then(function (response) {
   // handle success
-  if(response.data){
-    const {coord, weather, base, main, visibility, wind,clouds,dt,sys,timezone,id,name,docs} = response.data;
+  if (response.data) {
+    const {
+      coord,
+      weather,
+      base,
+      main,
+      visibility,
+      wind,
+      clouds,
+      dt,
+      sys,
+      timezone,
+      id,
+      name,
+      docs,
+    } = response.data;
 
     meteos.push({
       id: _.uniqueId(),
@@ -33,9 +46,8 @@ axios.get(url)
       temp: main.temp,
       humidite: main.humidity, // en minutes,
       vent: wind.speed,
-      
-      pression: main.pressure // en USD$,
-      
+
+      pression: main.pressure, // en USD$,
     });
   }
   console.log(meteos);
@@ -43,83 +55,97 @@ axios.get(url)
 
 // .../movies/
 /* GET movies listing. */
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   // Get List of movie and return JSON
   res.status(200).json({ meteos });
 });
 
 // .../movies/86
 /* GET one movie. */
-router.get('/:id', (req, res) => {
+router.get("/:id", (req, res) => {
   const { id } = req.params;
   // Find movie in DB
   const meteo = _.find(meteos, ["id", loc]);
 
-  if(meteo) {
+  if (meteo) {
     // Return movie
     res.status(200).json({
-      message: 'movie found!',
-      meteo
+      message: "weather found!",
+      meteo,
     });
   } else {
     res.status(404).json({
-      message: 'movie not found!'
+      message: "weather not found!",
     });
   }
 });
 
 // ..../movies/
 /* PUT new movie. */
-router.put('/', (req, res) => {
+router.put("/", (req, res) => {
   // Get the data from request from request
 
-
   const { meteo } = req.body;
-  
+
   const url = `${API_URL}?q=${meteo}&appid=${API_KEY}&units=metric`;
 
   // Make a request for a movie
-  axios.get(url)
-  .then(function (response) {
+  axios
+    .get(url)
+    .then(function (response) {
       // handle success
-      if(response.data){
-        const {coord, weather, base, main, visibility, wind,clouds,dt,sys,timezone,id,name,docs} = response.data;
-    
+      if (response.data) {
+        const {
+          coord,
+          weather,
+          base,
+          main,
+          visibility,
+          wind,
+          clouds,
+          dt,
+          sys,
+          timezone,
+          id,
+          name,
+          docs,
+        } = response.data;
+
         meteos.push({
           id: _.uniqueId(),
           meteo: name,
           temp: main.temp,
           humidite: main.humidity, // en minutes,
           vent: wind.speed,
-          
-          pression: main.pressure // en USD$,
-          
+
+          pression: main.pressure, // en USD$,
         });
       }
-    res.json({meteos});
+      res.json({ meteos });
+      console.log(meteos);
     })
-  .catch(function (error) {
-    // handle error
-    res.json({error});
-  }); 
+    .catch(function (error) {
+      // handle error
+      res.json({ error });
+    });
 });
 
 /* DELETE movie. */
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
   // Get the :id of the movie we want to delete from the params of the request
-  const { id} = req.params;
-  
+  const { id } = req.params;
+
   // Remove from "DB"
   _.remove(meteos, ["id", id]);
-  
+
   // Return message
   res.json({
-    message: `Just removed ${id}`
+    message: `Just removed ${id}`,
   });
 });
 
 /* UPDATE movie. */
-router.post('/:id', (req, res) => {
+router.post("/:id", (req, res) => {
   // Get the :id of the movie we want to update from the params of the request
   const { id } = req.params;
   // Get the new data of the movie we want to update from the body of the request
@@ -128,10 +154,10 @@ router.post('/:id', (req, res) => {
   const meteoToUpdate = _.find(meteos, ["id", id]);
   // Update data with new data (js is by address)
   meteoToUpdate.Meteo = meteo;
-  
+
   // Return message
   res.json({
-    message: `Just updated ${id} with ${Meteo}`
+    message: `Just updated ${id} with ${Meteo}`,
   });
 });
 
