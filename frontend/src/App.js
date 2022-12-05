@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "./components/button";
-import Movie from "./components/movie";
+import Movie from "./components/Movies";
 import Meteo2 from "./components/meteo2";
 import Humidity from "./components/humidity";
-import Rain from "./components/rain";
+import Pression from "./components/pression";
 import Wind from "./components/wind";
+import Cloud from "./components/cloud";
 import Meteo from "./components/meteo1";
 
 import Search from "./components/search";
@@ -99,8 +100,14 @@ export default class App extends React.Component {
         </div>
 
         <div id="body2">
-          <div>
-            <Meteo2 />
+          <div class="meteo2">
+          {map(meteos, (meteo, index) => (
+              <Meteo2
+                key={`meteo-${index}`}
+                infos={meteo}
+                deleteWeather={this.deleteWeather}
+              />
+            ))}
           </div>
           <div class="all">
             {map(meteos, (meteo, index) => (
@@ -113,7 +120,7 @@ export default class App extends React.Component {
           </div>
           <div class="all">
             {map(meteos, (meteo, index) => (
-              <Rain
+              <Pression
                 key={`meteo-${index}`}
                 infos={meteo}
                 deleteWeather={this.deleteWeather}
@@ -129,15 +136,16 @@ export default class App extends React.Component {
               />
             ))}
           </div>
-          <div className="movies">
+          <div className="all">
             {map(meteos, (meteo, index) => (
-              <Movie
+              <Cloud
                 key={`meteo-${index}`}
                 infos={meteo}
                 deleteWeather={this.deleteWeather}
               />
             ))}
           </div>
+          
         </div>
       </div>
     );

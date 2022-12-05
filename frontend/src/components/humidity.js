@@ -26,7 +26,7 @@ export default class Humidity extends React.Component {
   }
 
   render() {
-    const { infos, deleteMovie } = this.props;
+    const { infos, deleteWeather } = this.props;
     const { id, meteo, temp, humidite, vent, pression } = infos;
 
     return (

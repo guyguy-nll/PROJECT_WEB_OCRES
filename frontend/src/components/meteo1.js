@@ -26,9 +26,8 @@ export default class Meteo extends React.Component {
   }
 
   render() {
-    const { infos, deleteMovie } = this.props;
-    const { id, meteo, temp, humidite, vent, pression } = infos;
-
+    const { infos, deleteWeather } = this.props;
+    const { id, meteo, temp, humidite,icon,vent, pression } = infos;
     return (
       <div>
         <div>{this.renderInfo(temp)}</div>

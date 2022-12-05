@@ -20,7 +20,7 @@ const meteo = "Paris";
 //`${API_URL}?q=${localisation}&appid=${API_KEY}&units=metric`
 const url = `${API_URL}?q=${meteo}&appid=${API_KEY}&units=metric`;
 
-// Make a request for a movie
+// Make a request for a weather
 axios.get(url).then(function (response) {
   // handle success
   if (response.data) {
@@ -32,7 +32,6 @@ axios.get(url).then(function (response) {
       visibility,
       wind,
       clouds,
-      uvi,
       dt,
       sys,
       timezone,
@@ -40,36 +39,37 @@ axios.get(url).then(function (response) {
       name,
       docs,
     } = response.data;
-
     meteos.push({
       id: _.uniqueId(),
       meteo: name,
-      temp: main.temp,
+      temp: Math.floor(main.temp),
       humidite: main.humidity, // en minutes,
       vent: wind.speed,
       nuage: clouds.all,
       pression: main.pressure, // en USD$,
+      icon: weather.icon,
     });
+    
   }
   console.log(meteos);
 });
 
-// .../movies/
-/* GET movies listing. */
+// ...
+/* GET weathers listing. */
 router.get("/", (req, res) => {
-  // Get List of movie and return JSON
+  // Get List of weather and return JSON
   res.status(200).json({ meteos });
 });
 
-// .../movies/86
-/* GET one movie. */
+// .../weathers/86
+/* GET one weather. */
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  // Find movie in DB
+  // Find weather in DB
   const meteo = _.find(meteos, ["id", loc]);
 
   if (meteo) {
-    // Return movie
+    // Return weather
     res.status(200).json({
       message: "weather found!",
       meteo,
@@ -81,8 +81,8 @@ router.get("/:id", (req, res) => {
   }
 });
 
-// ..../movies/
-/* PUT new movie. */
+// ..../weathers/
+/* PUT new weather. */
 router.put("/", (req, res) => {
   // Get the data from request from request
 
@@ -90,7 +90,7 @@ router.put("/", (req, res) => {
 
   const url = `${API_URL}?q=${meteo}&appid=${API_KEY}&units=metric`;
 
-  // Make a request for a movie
+  // Make a request for a weather
   axios
     .get(url)
     .then(function (response) {
@@ -115,10 +115,11 @@ router.put("/", (req, res) => {
         meteos.push({
           id: _.uniqueId(),
           meteo: name,
-          temp: main.temp,
+          temp: Math.floor(main.temp),
           humidite: main.humidity, // en minutes,
           vent: wind.speed,
           nuage: clouds.all,
+          icon: weather.icon,
           pression: main.pressure, // en USD$,
         });
       }
@@ -131,9 +132,9 @@ router.put("/", (req, res) => {
     });
 });
 
-/* DELETE movie. */
+/* DELETE weather. */
 router.delete("/:id", (req, res) => {
-  // Get the :id of the movie we want to delete from the params of the request
+  // Get the :id of the weather we want to delete from the params of the request
   const { id } = req.params;
 
   // Remove from "DB"
@@ -145,11 +146,11 @@ router.delete("/:id", (req, res) => {
   });
 });
 
-/* UPDATE movie. */
+/* UPDATE weather. */
 router.post("/:id", (req, res) => {
-  // Get the :id of the movie we want to update from the params of the request
+  // Get the :id of the weather we want to update from the params of the request
   const { id } = req.params;
-  // Get the new data of the movie we want to update from the body of the request
+  // Get the new data of the weather we want to update from the body of the request
   const { meteo } = req.body;
   // Find in DB
   const meteoToUpdate = _.find(meteos, ["id", id]);
