@@ -30,7 +30,7 @@ export default class Movies extends React.Component {
 
   render() {
     const { infos, deleteMovie } = this.props;
-    const { id, meteo, temp, humidite, vent, pression } = infos;
+    const { id, meteo, temp, humidite, nuage, pression, vent } = infos;
 
     return (
       <div className="movie">
@@ -39,6 +39,7 @@ export default class Movies extends React.Component {
           {this.renderInfo("Temp", temp)}
           {this.renderInfo("humidite", humidite)}
           {this.renderInfo("vent", vent)}
+          {this.renderInfo("nuage", nuage)}
           {this.renderInfo("pression", pression)}
         </div>
         <Button text={"Supprimer"} onClick={() => deleteMovie(id)} />

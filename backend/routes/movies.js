@@ -32,6 +32,7 @@ axios.get(url).then(function (response) {
       visibility,
       wind,
       clouds,
+      uvi,
       dt,
       sys,
       timezone,
@@ -46,7 +47,7 @@ axios.get(url).then(function (response) {
       temp: main.temp,
       humidite: main.humidity, // en minutes,
       vent: wind.speed,
-
+      nuage: clouds.all,
       pression: main.pressure, // en USD$,
     });
   }
@@ -117,7 +118,7 @@ router.put("/", (req, res) => {
           temp: main.temp,
           humidite: main.humidity, // en minutes,
           vent: wind.speed,
-
+          nuage: clouds.all,
           pression: main.pressure, // en USD$,
         });
       }
