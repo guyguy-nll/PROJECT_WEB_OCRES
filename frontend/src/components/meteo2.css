@@ -2,7 +2,7 @@
     margin-top: 1rem;
     margin-left: 1rem;
     margin-right: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     padding: 20px;
     background: #FFFFFF;
     border-radius: 40px;
@@ -12,6 +12,10 @@
     height: 120px;
     background: #FFFFFF;
     flex-shrink: 3;
+}
+
+.meteo2:hover{
+    box-shadow: none;
 }
 
 @media (min-width: 1440px) {

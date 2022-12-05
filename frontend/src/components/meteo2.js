@@ -3,7 +3,6 @@ import "./meteo2.css";
 import { map, split } from "lodash";
 
 export default class Meteo2 extends React.Component {
-  
   renderInfo(label, info) {
     return (
       <div>
@@ -32,7 +31,8 @@ export default class Meteo2 extends React.Component {
 
     return (
       <div>
-        <div>{this.renderInfo("Localisation", meteo)}</div>
+        <div class="titre">Votre localisation :</div>
+        <div class="valeur">{this.renderInfo(meteo)}</div>
       </div>
     );
   }

@@ -31,7 +31,8 @@ export default class Pression extends React.Component {
 
     return (
       <div>
-        <div>{this.renderInfo("pression", pression)}</div>
+        <div class="titre">Pression actuel :</div>
+        <div class="valeur"> {this.renderInfo(pression)}</div>
       </div>
     );
   }

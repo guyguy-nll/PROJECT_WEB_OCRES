@@ -4,3 +4,18 @@
     margin-left: 7%;
     margin-right: 5%;
 }
+
+.titre {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.valeur {
+    padding-top: 0.8rem;
+    text-align: left;
+    font-size: 300%;
+    text-align: center;
+    white-space: nowrap;
+}

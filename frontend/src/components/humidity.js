@@ -31,7 +31,8 @@ export default class Humidity extends React.Component {
 
     return (
       <div>
-        <div>{this.renderInfo("humidite", humidite)}</div>
+        <div class="titre">Taux d'humidité :</div>
+        <div class="valeur"> {this.renderInfo(humidite)}</div>
       </div>
     );
   }

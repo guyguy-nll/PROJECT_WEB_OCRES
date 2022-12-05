@@ -75,6 +75,20 @@ export default class App extends React.Component {
 
     return (
       <div>
+        <div class="area">
+          <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
         <div id="body3">
           {this.renderCategory("Refresh", this.getList)}
           <div className="category">
@@ -101,7 +115,7 @@ export default class App extends React.Component {
 
         <div id="body2">
           <div class="meteo2">
-          {map(meteos, (meteo, index) => (
+            {map(meteos, (meteo, index) => (
               <Meteo2
                 key={`meteo-${index}`}
                 infos={meteo}
@@ -145,7 +159,6 @@ export default class App extends React.Component {
               />
             ))}
           </div>
-          
         </div>
       </div>
     );

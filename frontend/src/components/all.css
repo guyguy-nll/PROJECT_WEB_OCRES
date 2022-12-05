@@ -1,5 +1,5 @@
 .all {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     margin-left: 1rem;
     margin-right: 1rem;
     padding: 20px;
@@ -9,5 +9,23 @@
     border-radius: 40px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: all 300ms ease;
+}
+.all:hover{
+        box-shadow: none;
+}
+
+.titre {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.valeur {
+    padding-top: 0.8rem;
+    text-align: left;
+    font-size: 300%;
+    text-align: center;
+    white-space: nowrap;
 }
     

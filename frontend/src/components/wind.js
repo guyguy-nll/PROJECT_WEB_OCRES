@@ -31,7 +31,8 @@ export default class Wind extends React.Component {
 
     return (
       <div>
-        <div>{this.renderInfo("Force du vent", vent)}</div>
+        <div class="titre">Force du vent :</div>
+        <div class="valeur">{this.renderInfo(vent)}</div>
       </div>
     );
   }

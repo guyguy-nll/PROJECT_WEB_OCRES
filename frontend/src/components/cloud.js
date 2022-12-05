@@ -27,11 +27,12 @@ export default class Cloud extends React.Component {
 
   render() {
     const { infos, deleteWeather } = this.props;
-    const { id, meteo, temp, humidite,nuage, vent, pression } = infos;
+    const { id, meteo, temp, humidite, nuage, vent, pression } = infos;
 
     return (
       <div>
-        <div>{this.renderInfo("nuages", nuage)}</div>
+        <div class="titre">Taux de nuages :</div>
+        <div class="valeur"> {this.renderInfo(nuage)}</div>
       </div>
     );
   }
