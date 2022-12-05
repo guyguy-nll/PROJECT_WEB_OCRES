@@ -31,3 +31,17 @@
     height: 120px;
     }
 }
+
+.titre {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.valeur {
+    padding-top: 0.8rem;
+    font-size: 300%;
+    text-align: center;
+    white-space: nowrap;
+}
