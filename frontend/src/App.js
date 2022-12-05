@@ -12,7 +12,7 @@ import axios from "axios";
 import { map } from "lodash";
 import "./App.css";
 
-const BACKEND_BASE_URL = "http://localhost:3001/movies/";
+const BACKEND_BASE_URL = "http://localhost:3001/weather/";
 
 export default class App extends React.Component {
   constructor() {
@@ -20,7 +20,7 @@ export default class App extends React.Component {
 
     this.state = {
       meteos: [],
-      addFilmInputValue: "",
+      addWeatherInputValue: "",
     };
   }
 
@@ -28,8 +28,8 @@ export default class App extends React.Component {
     this.getList();
   }
 
-  addFilmInputChange = (event) => {
-    this.setState({ addFilmInputValue: event.target.value });
+  addWeatherInputChange = (event) => {
+    this.setState({ addWeatherInputValue: event.target.value });
 
     console.log("value is:", event.target.value);
   };
@@ -45,16 +45,16 @@ export default class App extends React.Component {
       );
   };
 
-  addMovie = () => {
+  addWeather = () => {
     axios
       .delete(`${BACKEND_BASE_URL}/${this.state.meteos[0].id}`)
       .then((data) => this.getList());
     axios
-      .put(BACKEND_BASE_URL, { meteo: this.state.addFilmInputValue })
+      .put(BACKEND_BASE_URL, { meteo: this.state.addWeatherInputValue })
       .then((data) => this.getList());
   };
 
-  deleteMovie = (id) => {
+  deleteWeather = (id) => {
     axios.delete(`${BACKEND_BASE_URL}/${id}`).then((data) => this.getList());
   };
 
@@ -67,7 +67,7 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { meteos, addFilmInputValue } = this.state;
+    const { meteos, addWeatherInputValue } = this.state;
     const handleOnSearchChange = (searchData) => {
       const [lat, lon] = searchData.value.split(" ");
     };
@@ -81,10 +81,10 @@ export default class App extends React.Component {
               type="text"
               id="addFilm"
               name="addFilm"
-              onChange={this.addFilmInputChange}
-              value={addFilmInputValue}
+              onChange={this.addWeatherInputChange}
+              value={addWeatherInputValue}
             />
-            <Button text={"Ajouter"} onClick={this.addMovie} />
+            <Button text={"Ajouter"} onClick={this.addWeather} />
           </div>
 
           <div className="meteo1">
@@ -92,7 +92,7 @@ export default class App extends React.Component {
               <Meteo
                 key={`meteo-${index}`}
                 infos={meteo}
-                deleteMovie={this.deleteMovie}
+                deleteWeather={this.deleteWeather}
               />
             ))}
           </div>
@@ -107,7 +107,7 @@ export default class App extends React.Component {
               <Humidity
                 key={`meteo-${index}`}
                 infos={meteo}
-                deleteMovie={this.deleteMovie}
+                deleteWeather={this.deleteWeather}
               />
             ))}
           </div>
@@ -116,7 +116,7 @@ export default class App extends React.Component {
               <Rain
                 key={`meteo-${index}`}
                 infos={meteo}
-                deleteMovie={this.deleteMovie}
+                deleteWeather={this.deleteWeather}
               />
             ))}
           </div>
@@ -125,7 +125,7 @@ export default class App extends React.Component {
               <Wind
                 key={`meteo-${index}`}
                 infos={meteo}
-                deleteMovie={this.deleteMovie}
+                deleteWeather={this.deleteWeather}
               />
             ))}
           </div>
@@ -134,7 +134,7 @@ export default class App extends React.Component {
               <Movie
                 key={`meteo-${index}`}
                 infos={meteo}
-                deleteMovie={this.deleteMovie}
+                deleteWeather={this.deleteWeather}
               />
             ))}
           </div>

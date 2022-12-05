@@ -10,7 +10,7 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var moviesRouter = require('./routes/movies');
+var weatherRouter = require('./routes/weather');
 // chemin pour trouver les routes de l'API plante
 const stuffRouter=require('./routes/plant');
 
@@ -43,7 +43,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/movies', moviesRouter);
+app.use('/weather', weatherRouter);
 // API de plantes avec notre bdd
 app.use('/api/plant', stuffRouter);
 // catch 404 and forward to error handler
