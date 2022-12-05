@@ -1,14 +1,15 @@
 .meteo1 {
     color: white;
-    font-size: 96px;
-    margin-left: 7%;
+    font-size: 85px;
+    margin-left: 2%;
     margin-right: 5%;
+    margin-top:10%;
 }
 
 .titre {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     text-align: left;
 }
 

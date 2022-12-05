@@ -42,11 +42,11 @@ axios.get(url).then(function (response) {
     meteos.push({
       id: _.uniqueId(),
       meteo: name,
-      temp: Math.floor(main.temp),
-      humidite: main.humidity, // en minutes,
-      vent: wind.speed,
-      nuage: clouds.all,
-      pression: main.pressure, // en USD$,
+      temp: Math.floor(main.temp)+"°C",
+      humidite: main.humidity+" %", 
+      vent: wind.speed+" km/h",
+      nuage: clouds.all+" %",
+      pression: main.pressure+" hPa", 
       icon: weather.icon,
     });
     
@@ -115,12 +115,12 @@ router.put("/", (req, res) => {
         meteos.push({
           id: _.uniqueId(),
           meteo: name,
-          temp: Math.floor(main.temp),
-          humidite: main.humidity, // en minutes,
-          vent: wind.speed,
-          nuage: clouds.all,
+          temp: Math.floor(main.temp)+"°C",
+          humidite: main.humidity+"%", 
           icon: weather.icon,
-          pression: main.pressure, // en USD$,
+          vent: wind.speed+" km/h",
+          nuage: clouds.all+" %",
+          pression: main.pressure+" hPa", 
         });
       }
       res.json({ meteos });

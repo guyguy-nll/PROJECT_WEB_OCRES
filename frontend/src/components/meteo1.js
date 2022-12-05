@@ -30,7 +30,7 @@ export default class Meteo extends React.Component {
     const { id, meteo, temp, humidite, icon, vent, pression } = infos;
     return (
       <div>
-        <div>{this.renderInfo(temp)}°C</div>
+        <div>{this.renderInfo(temp)}</div>
       </div>
     );
   }
