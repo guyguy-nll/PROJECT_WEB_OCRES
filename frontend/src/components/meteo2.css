@@ -13,7 +13,9 @@
     background: #FFFFFF;
     flex-shrink: 3;
 }
-
+.img{
+    text-align: center;
+};
 .meteo2:hover{
     box-shadow: none;
 }

@@ -90,7 +90,6 @@ export default class App extends React.Component {
           </ul>
         </div>
         <div id="body3">
-          {this.renderCategory("Refresh", this.getList)}
           <div className="category">
             <input
               type="text"
